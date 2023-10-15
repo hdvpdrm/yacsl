@@ -12,7 +12,7 @@ typedef struct
 	size_t len;
 }string_t;
 
-void sl_init(string_t* str, size_t len);
+int sl_init(string_t* str, size_t len);
 int sl_fill(string_t* str, char* val);
 void sl_free(string_t* str);
 int sl_eq(string_t* a, string_t* b);
