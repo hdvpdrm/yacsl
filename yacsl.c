@@ -1,11 +1,25 @@
 #include"yacsl.h"
 
-
 void sl_init(string_t* str, size_t len)
 {
 	str->buffer = (char*)malloc(len*sizeof(char));
 	str->buffer[len-1] = '\0';
 	str->len = len;	
+}
+int sl_fill(string_t* str, char* val)
+{
+	//decrement len, because strlen don't count the terminator null
+	if(strlen(val) > str->len-1)
+	{
+		return SL_FAIL;
+	}
+
+	for(size_t i = 0;i<strlen(val);++i)
+	{
+		str->buffer[i] = val[i];
+	}
+
+	return SL_OK;
 }
 void sl_free(string_t* str)
 {
