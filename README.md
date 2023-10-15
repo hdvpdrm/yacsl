@@ -4,6 +4,10 @@ yet another C strings library
 ### API
 ```c
 
+#define SL_FAIL -1
+#define SL_OK   0
+
+
 typedef struct
 {
 	char* buffer;
