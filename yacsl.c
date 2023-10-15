@@ -223,4 +223,22 @@ int sl_findstr(string_t* str, string_t* sub)
 
 	return found - str->buffer;
 }
+int sl_findcstr(string_t* str, char* sub)
+{
+	if(str == NULL ||
+	   sub == NULL)
+	{
+		return SL_FAIL;
+	}
+	if(str->buffer == NULL)
+	{
+		return SL_FAIL;
+	}
 
+	char* found = strstr(str->buffer,sub);
+	if(found == NULL)
+	{
+		return -2;
+	}
+	return found - str->buffer;
+}

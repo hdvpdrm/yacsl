@@ -45,6 +45,6 @@ int sl_findch(string_t* str, char ch);
 
 //returns the start position of substring in str, -2 if not found, SL_FAIL if fails
 int sl_findstr(string_t* str, string_t* sub);
-
+int sl_findcstr(string_t* str, char* sub);
 
 #endif //YACSL_H
