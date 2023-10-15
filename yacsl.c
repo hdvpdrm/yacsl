@@ -26,6 +26,19 @@ int sl_fill(string_t* str, char* val)
 
 	return SL_OK;
 }
+int sl_filln(string_t* str, char* val, size_t n)
+{
+	if(strlen(val)+n > str->len-1)
+	{
+		return SL_FAIL;
+	}
+
+	for(size_t i = 0;i<strlen(val);++i)
+	{
+		str->buffer[i+n] = val[i];
+	}
+	return SL_OK;
+}
 void sl_free(string_t* str)
 {
 	free(str->buffer);
