@@ -40,5 +40,11 @@ int sl_cat(string_t* a, string_t* b);
 //copies source[begin;end) to dest. dest will be overwritten
 int sl_slice(string_t* source, string_t* dest, size_t begin, size_t end);
 
+//returns the start position of character in str, -2 if not found, SL_FAIL if fails
+int sl_findch(string_t* str, char ch);
+
+//returns the start position of substring in str, -2 if not found, SL_FAIL if fails
+int sl_findstr(string_t* str, string_t* sub);
+
 
 #endif //YACSL_H
