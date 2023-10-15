@@ -121,3 +121,35 @@ int sl_cat(string_t* a, string_t* b)
 	return SL_OK;
 }
 
+int sl_slice(string_t* source, string_t* dest, size_t begin, size_t end)
+{
+	if(source == NULL ||
+	   dest   == NULL)
+	{
+		return SL_FAIL;
+	}	
+
+	if(begin > source->len-1 ||
+	   end   > source->len-1)
+	{
+		return SL_FAIL;
+	}
+	
+	sl_free(dest);
+
+	if(sl_init(dest,end-begin) != SL_OK)
+	{
+		return SL_FAIL;
+	}
+
+	size_t n = 0;
+	for(size_t i = begin;i!=end;++i, ++n)
+	{
+		//printf("%c",source[i]);
+		dest->buffer[n] = source->buffer[i];
+	}
+
+	return SL_OK;
+}
+
+

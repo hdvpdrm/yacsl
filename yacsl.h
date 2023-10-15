@@ -37,5 +37,8 @@ int sl_eq(string_t* a, string_t* b);
 //append a string to b string
 int sl_cat(string_t* a, string_t* b);
 
+//copies source[begin;end) to dest. dest will be overwritten
+int sl_slice(string_t* source, string_t* dest, size_t begin, size_t end);
+
 
 #endif //YACSL_H
