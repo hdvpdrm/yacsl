@@ -1,6 +1,10 @@
 # yacsl
 yet another C strings library
 
+### Usage
+every functions returns SL_FAIL if something went wrong, so you should check the return value before<br>
+doing anything else. Also it's safe, so you don't need to check your strings(if they are NULL pointers),<br>
+because every function checks passed pointers.
 ### API
 ```c
 
