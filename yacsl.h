@@ -16,11 +16,17 @@ typedef struct
 //init memory for str's buffer with passed len
 int sl_init(string_t* str, size_t len);
 
-//init str's buffer with passed val from beginning
-int sl_fill(string_t* str, char* val);
+//replace str's buffer with passed val from beginning
+int sl_rep(string_t* str, char* val);
 
-//init str's buffer with passed val starting from nth element
-int sl_filln(string_t* str, char* val, size_t n);
+//replace str's buffer with passed val starting from nth element
+int sl_repn(string_t* str, char* val, size_t n);
+
+//fill str's buffer with passed character from bginning
+int sl_fill(string_t* str, char ch);
+
+//fill str's buffer with passed character starting from nth element
+int sl_filln(string_t* str, char ch, size_t n);
 
 //free str's buffer's memory
 void sl_free(string_t* str);

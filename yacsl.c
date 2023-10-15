@@ -16,7 +16,7 @@ int sl_init(string_t* str, size_t len)
 
 	return SL_OK;
 }
-int sl_fill(string_t* str, char* val)
+int sl_rep(string_t* str, char* val)
 {
 	if(str == NULL)
 	{
@@ -36,7 +36,7 @@ int sl_fill(string_t* str, char* val)
 
 	return SL_OK;
 }
-int sl_filln(string_t* str, char* val, size_t n)
+int sl_repn(string_t* str, char* val, size_t n)
 {
 	if(str == NULL || 
 	   val == NULL)
@@ -52,6 +52,37 @@ int sl_filln(string_t* str, char* val, size_t n)
 	for(size_t i = 0;i<strlen(val);++i)
 	{
 		str->buffer[i+n] = val[i];
+	}
+	return SL_OK;
+}
+int sl_fill(string_t* str, char ch)
+{
+	if(str == NULL)
+	{
+		return SL_FAIL;
+	}	
+	
+	for(size_t i = 0;i<str->len;++i)
+	{
+		str->buffer[i] = ch;
+	}
+
+	return SL_OK;	
+}
+int sl_filln(string_t* str, char ch, size_t n)
+{
+	if(str == NULL)
+	{
+		return SL_FAIL;
+	}
+	if(n > str->len-1)
+	{
+		return SL_FAIL;
+	}
+
+	for(size_t i = 0; i < str->len;++i)
+	{
+		str->buffer[i+n] = ch;
 	}
 	return SL_OK;
 }
@@ -85,7 +116,8 @@ int sl_cat(string_t* a, string_t* b)
 	{
 		a->buffer[i]=b->buffer[n];
 	}
-
+	a->buffer[a->len-1] = '\0';
+	
 	return SL_OK;
 }
 
