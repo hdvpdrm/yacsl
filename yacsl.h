@@ -12,9 +12,17 @@ typedef struct
 	size_t len;
 }string_t;
 
+
+//init memory for str's buffer with passed len
 int sl_init(string_t* str, size_t len);
+
+//init str's buffer with passed val from beginning
 int sl_fill(string_t* str, char* val);
+
+//free str's buffer's memory
 void sl_free(string_t* str);
+
+//return 0 if a == b
 int sl_eq(string_t* a, string_t* b);
 
 
