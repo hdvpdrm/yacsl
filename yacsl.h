@@ -28,5 +28,8 @@ void sl_free(string_t* str);
 //return 0 if a == b
 int sl_eq(string_t* a, string_t* b);
 
+//append a string to b string
+int sl_cat(string_t* a, string_t* b);
+
 
 #endif //YACSL_H
