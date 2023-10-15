@@ -1,8 +1,10 @@
 # yacsl
 yet another C strings library
 
-### Usage
-every functions returns SL_FAIL if something went wrong, so you should check the return value before<br>
+
+### Notes
+1)This library is written in ```C17```, tested on ```Arch Linux``` ```with gcc 13.2.1```<br>
+2)every functions returns SL_FAIL if something went wrong, so you should check the return value before<br>
 doing anything else. Also it's safe, so you don't need to check your strings(if they are NULL pointers),<br>
 because every function checks passed pointers.
 ### API
@@ -52,5 +54,8 @@ int sl_findch(string_t* str, char ch);
 //returns the start position of substring in str, -2 if not found, SL_FAIL if fails
 int sl_findstr(string_t* str, string_t* sub);
 int sl_findcstr(string_t* str, char* sub);
+
+//split string by size into array of equal chunks. Returns NULL if fails
+string_t** sl_split_by_size(string_t* str, size_t n);
 
 ```
