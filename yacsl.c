@@ -113,6 +113,16 @@ void sl_free(string_t* str)
 	free(str->buffer);
 	str->len = 0;
 }
+void sl_free_arr(string_t** arr)
+{
+	size_t i = 0;
+	while(arr[i] != NULL)
+	{
+		sl_free(arr[i]);
+		++i;
+	}	
+	free(arr);
+}
 int sl_eq(string_t* a, string_t* b)
 {
 	return strcmp(a->buffer,b->buffer);
@@ -242,3 +252,54 @@ int sl_findcstr(string_t* str, char* sub)
 	}
 	return found - str->buffer;
 }
+
+string_t** sl_split_by_size(string_t* str, size_t n)
+{
+	if(str == NULL || 
+	   n == 0      )
+	{
+		return NULL;
+	}
+	if(n > str->len)
+	{
+		return NULL;
+	}
+	
+	
+	size_t chunks_size;
+	float chunks_number = str->len/n;
+	if((chunks_number - (int)chunks_number) == 0)
+	{
+		chunks_size = (size_t)chunks_number;
+	}
+	else
+	{
+		//it has 1 string and that's size is less than other's 
+		chunks_size = (size_t)chunks_number + 1;
+	}
+
+	string_t** chunks = (string_t**) malloc(n*sizeof(string_t*));
+	for(size_t i = 0;i<n;++i)
+	{
+		chunks[i] = (string_t*) malloc(chunks_size* sizeof(string_t));
+	}
+
+	size_t pos = 0;//position in string
+	for(size_t i = 0;i<n;++i)
+	{
+		if(sl_init(chunks[i],chunks_size) != SL_OK)
+		{
+			sl_free_arr(chunks);
+			return NULL;
+		}
+		
+		for(size_t _j = 0; _j<chunks_size;++_j)
+		{
+			chunks[i]->buffer[_j] = str->buffer[pos];
+			++pos;
+		}
+	}
+	
+	return chunks;
+}
+

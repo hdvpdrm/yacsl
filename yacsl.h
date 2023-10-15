@@ -31,6 +31,9 @@ int sl_filln(string_t* str, char ch, size_t n);
 //free str's buffer's memory
 void sl_free(string_t* str);
 
+//free array made of strings
+void sl_free_arr(string_t** arr);
+
 //return 0 if a == b
 int sl_eq(string_t* a, string_t* b);
 
@@ -46,5 +49,9 @@ int sl_findch(string_t* str, char ch);
 //returns the start position of substring in str, -2 if not found, SL_FAIL if fails
 int sl_findstr(string_t* str, string_t* sub);
 int sl_findcstr(string_t* str, char* sub);
+
+//split string by size into array of equal chunks. Returns NULL if fails
+string_t** sl_split_by_size(string_t* str, size_t n);
+
 
 #endif //YACSL_H
