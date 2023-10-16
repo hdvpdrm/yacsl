@@ -4,7 +4,7 @@
 #define SL_OK   0
 
 #include<stdlib.h>
-#include<stdio.h>
+#include<string.h>
 
 typedef struct
 {
@@ -53,5 +53,6 @@ int sl_findcstr(string_t* str, char* sub);
 //split string by size into array of equal chunks. Returns NULL if fails
 string_t** sl_split_by_size(string_t* str, size_t n);
 
-
+//return number of counter characters or  SL_FAIL
+int sl_count(string_t* str, char ch);
 #endif //YACSL_H

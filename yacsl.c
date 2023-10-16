@@ -260,6 +260,10 @@ string_t** sl_split_by_size(string_t* str, size_t n)
 	{
 		return NULL;
 	}
+	if(str->buffer == NULL)
+	{
+		return NULL;
+	}
 	if(n > str->len)
 	{
 		return NULL;
@@ -292,3 +296,24 @@ string_t** sl_split_by_size(string_t* str, size_t n)
 	return chunks;
 }
 
+int sl_count(string_t* str, char ch)
+{
+	if(str == NULL)
+	{
+		return SL_FAIL;
+	}
+	if(str->buffer == NULL)
+	{
+		return SL_FAIL;
+	}
+
+	int count = 0;
+	for(size_t i = 0;i<str->len;++i)
+	{
+		if(str->buffer[i] == ch)
+		{
+			++count;
+		}
+	}
+	return count;
+}
