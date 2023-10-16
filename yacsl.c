@@ -265,19 +265,8 @@ string_t** sl_split_by_size(string_t* str, size_t n)
 		return NULL;
 	}
 	
-	
-	size_t chunks_size;
-	float chunks_number = str->len/n;
-	if((chunks_number - (int)chunks_number) == 0)
-	{
-		chunks_size = (size_t)chunks_number;
-	}
-	else
-	{
-		//it has 1 string and that's size is less than other's 
-		chunks_size = (size_t)chunks_number + 1;
-	}
-
+	size_t chunks_size = n;
+		
 	string_t** chunks = (string_t**) malloc(n*sizeof(string_t*));
 	for(size_t i = 0;i<n;++i)
 	{
@@ -292,7 +281,7 @@ string_t** sl_split_by_size(string_t* str, size_t n)
 			sl_free_arr(chunks);
 			return NULL;
 		}
-		
+
 		for(size_t _j = 0; _j<chunks_size;++_j)
 		{
 			chunks[i]->buffer[_j] = str->buffer[pos];

@@ -3,8 +3,8 @@
 #define SL_FAIL -1
 #define SL_OK   0
 
-#include<string.h>
 #include<stdlib.h>
+#include<stdio.h>
 
 typedef struct
 {
