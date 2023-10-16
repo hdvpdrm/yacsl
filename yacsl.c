@@ -110,7 +110,7 @@ int sl_filln(string_t* str, char ch, size_t n)
 }
 void sl_free(string_t* str)
 {
-	free(str->buffer);
+	SL_FREE(str->buffer);
 	str->len = 0;
 }
 void sl_free_arr(string_t** arr)
