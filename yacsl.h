@@ -8,6 +8,7 @@
 
 #include<stdlib.h>
 #include<string.h>
+#include<stdio.h>
 
 typedef struct
 {
@@ -16,11 +17,15 @@ typedef struct
 }string_t;
 
 
-//init memory for str's buffer with passed len
+//init memory for str's buffer with passed len and end line with \0
 int sl_init(string_t* str, size_t len);
 
 //replace str's buffer with passed val from beginning
 int sl_rep(string_t* str, char* val);
+
+
+//replace str's buffer with passed val and kill terminating null
+int sl_rrep(string_t* str, char* val);
 
 //replace str's buffer with passed val starting from nth element
 int sl_repn(string_t* str, char* val, size_t n);
@@ -43,6 +48,9 @@ int sl_eq(string_t* a, string_t* b);
 //append a string to b string
 int sl_cat(string_t* a, string_t* b);
 
+//append character to the end of str
+int sl_append(string_t* str, char ch);
+
 //copies source[begin;end) to dest. dest will be overwritten
 int sl_slice(string_t* source, string_t* dest, size_t begin, size_t end);
 
@@ -54,7 +62,7 @@ int sl_findstr(string_t* str, string_t* sub);
 int sl_findcstr(string_t* str, char* sub);
 
 //split string by size into array of equal chunks. Returns NULL if fails
-string_t** sl_split_by_size(string_t* str, size_t n);
+string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number);
 
 //return number of counter characters or  SL_FAIL
 int sl_count(string_t* str, char ch);

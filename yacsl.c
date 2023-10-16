@@ -45,6 +45,23 @@ int sl_rep(string_t* str, char* val)
 
 	return SL_OK;
 }
+int sl_rrep(string_t* str, char* val)
+{
+	if(str == NULL ||
+	   val == NULL)
+	{
+		return SL_FAIL;   
+	}
+	if(str->buffer == NULL)
+	{
+		return SL_FAIL;
+	}
+	for(size_t i = 0;i<str->len;++i)
+	{
+		str->buffer[i] = val[i];
+	}
+	return SL_OK;
+}
 int sl_repn(string_t* str, char* val, size_t n)
 {
 	if(str == NULL || 
@@ -253,7 +270,7 @@ int sl_findcstr(string_t* str, char* sub)
 	return found - str->buffer;
 }
 
-string_t** sl_split_by_size(string_t* str, size_t n)
+string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number)
 {
 	if(str == NULL || 
 	   n == 0      )
@@ -268,30 +285,53 @@ string_t** sl_split_by_size(string_t* str, size_t n)
 	{
 		return NULL;
 	}
-	
-	size_t chunks_size = n;
-		
-	string_t** chunks = (string_t**) malloc(n*sizeof(string_t*));
-	for(size_t i = 0;i<n;++i)
-	{
-		chunks[i] = (string_t*) malloc(chunks_size* sizeof(string_t));
-	}
 
-	size_t pos = 0;//position in string
-	for(size_t i = 0;i<n;++i)
+	//init just for one chunk
+	string_t** chunks = (string_t**)malloc(sizeof(string_t*));
+	if(chunks == NULL)
 	{
-		if(sl_init(chunks[i],chunks_size) != SL_OK)
+		return NULL;
+	}
+	if(chunks_number)
+	{
+		*chunks_number = 1;
+	}
+	
+	size_t current_chunk = 0;
+	size_t i = 0;
+	while(i<str->len)
+	{
+		if(current_chunk != 0)
+		{
+			chunks = (string_t**)realloc(chunks, (current_chunk+1)*sizeof(string_t*));
+			if(chunks_number)
+			{
+				*chunks_number = current_chunk+1;
+			}
+		}
+	
+		string_t* chunk = (string_t*)malloc(sizeof(string_t));
+		if(chunk == NULL)
 		{
 			sl_free_arr(chunks);
 			return NULL;
 		}
-
-		for(size_t _j = 0; _j<chunks_size;++_j)
+		if(sl_init(chunk,n) != SL_OK)
 		{
-			chunks[i]->buffer[_j] = str->buffer[pos];
-			++pos;
+			sl_free_arr(chunks);
+			return NULL;
 		}
+		
+		for(size_t j = 0;j<n;++j)
+		{
+			chunk->buffer[j] = str->buffer[i];
+			++i;	
+		}
+
+		chunks[current_chunk] = chunk;
+		++current_chunk;
 	}
+	
 	
 	return chunks;
 }
@@ -316,4 +356,21 @@ int sl_count(string_t* str, char ch)
 		}
 	}
 	return count;
+}
+
+int sl_append(string_t* str, char ch)
+{
+	if(str == NULL)
+	{
+		return SL_FAIL;
+	}
+	if(str->buffer == NULL)
+	{
+		return SL_FAIL;
+	}
+
+	str->len+=1;
+	str->buffer = (char*)realloc(str->buffer,(int)str->len*sizeof(char));
+	str->buffer[str->len-1] = ch;
+	return SL_OK;
 }
