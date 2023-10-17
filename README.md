@@ -56,6 +56,9 @@ int sl_findstr(string_t* str, string_t* sub);
 int sl_findcstr(string_t* str, char* sub);
 
 //split string by size into array of equal chunks. Returns NULL if fails
-string_t** sl_split_by_size(string_t* str, size_t n);
+string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number);
+
+//return number of counter characters or  SL_FAIL
+int sl_count(string_t* str, char ch);
 
 ```
