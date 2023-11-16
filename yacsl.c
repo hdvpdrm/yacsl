@@ -303,7 +303,7 @@ string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number)
 	{
 		if(current_chunk != 0)
 		{ 
-		  string** tmp= (string_t**)realloc(chunks, (current_chunk+1)*sizeof(string_t*));
+		  string_t** tmp= (string_t**)realloc(chunks, (current_chunk+1)*sizeof(string_t*));
 		  if(tmp == NULL)
 		    {
 		      return NULL;
