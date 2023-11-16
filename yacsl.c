@@ -302,12 +302,21 @@ string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number)
 	while(i<str->len)
 	{
 		if(current_chunk != 0)
-		{
-			chunks = (string_t**)realloc(chunks, (current_chunk+1)*sizeof(string_t*));
-			if(chunks_number)
-			{
-				*chunks_number = current_chunk+1;
-			}
+		{ 
+		  string** tmp= (string_t**)realloc(chunks, (current_chunk+1)*sizeof(string_t*));
+		  if(tmp == NULL)
+		    {
+		      return NULL;
+		    }
+		 else
+		    {
+		     chunks = tmp;
+		    }
+			
+	         if(chunks_number)
+		   {
+		    *chunks_number = current_chunk+1;
+		   }
 		}
 	
 		string_t* chunk = (string_t*)malloc(sizeof(string_t));
