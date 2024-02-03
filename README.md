@@ -30,7 +30,7 @@ int sl_rep(string_t* str, char* val);
 //replace str's buffer with passed val starting from nth element
 int sl_repn(string_t* str, char* val, size_t n);
 
-//fill str's buffer with passed character from bginning
+//fill str's buffer with passed character from beginning
 int sl_fill(string_t* str, char ch);
 
 //fill str's buffer with passed character starting from nth element
