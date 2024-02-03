@@ -70,4 +70,7 @@ int sl_count(string_t* str, char ch);
 //replace a char from str with b char
 int sl_replace_all(string_t* str, char a, char b);
 
+//copy source to destination.
+int sl_copy(string_t* source, string_t* destination);
+
 #endif //YACSL_H

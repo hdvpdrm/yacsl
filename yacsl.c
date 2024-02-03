@@ -399,3 +399,26 @@ int sl_replace_all(string_t* str, char a, char b)
 
   return SL_OK;
 }
+
+int sl_copy(string_t* source, string_t* destination)
+{
+  if(source      == NULL ||
+     destination == NULL)
+    {
+      return SL_FAIL;
+    }
+
+  sl_free(destination);
+  if(sl_init(destination,source->len) == SL_FAIL)
+    {
+      return SL_FAIL;
+    }
+
+  for(size_t i = 0;i<source->len;++i)
+    {
+      destination->buffer[i] = source->buffer[i];
+      printf("%c",source->buffer[i]);
+    }
+
+  return SL_OK;
+}
