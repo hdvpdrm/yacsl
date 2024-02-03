@@ -66,4 +66,8 @@ string_t** sl_split_by_size(string_t* str, size_t n, size_t* chunks_number);
 
 //return number of counter characters or  SL_FAIL
 int sl_count(string_t* str, char ch);
+
+//replace a char from str with b char
+int sl_replace_all(string_t* str, char a, char b);
+
 #endif //YACSL_H

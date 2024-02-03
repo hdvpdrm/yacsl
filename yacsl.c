@@ -383,3 +383,19 @@ int sl_append(string_t* str, char ch)
 	str->buffer[str->len-1] = ch;
 	return SL_OK;
 }
+
+int sl_replace_all(string_t* str, char a, char b)
+{
+  if(str == NULL)
+    {
+      return SL_FAIL;
+    }
+
+  for(size_t i = 0;i<str->len;++i)
+    {
+      if(str->buffer[i] == a)
+	str->buffer[i] = b;
+    }
+
+  return SL_OK;
+}
