@@ -3,8 +3,8 @@
 
 #define SL_FREE(x) if(x != NULL)free(x)
 
-#define SL_FAIL -1
-#define SL_OK   0
+#define SL_FAIL 0
+#define SL_OK   1
 
 #include<stdlib.h>
 #include<string.h>
